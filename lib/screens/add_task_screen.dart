@@ -18,11 +18,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   _handleDatePicker() async {
     final DateTime date = await showDatePicker(
-        context: context,
-        initialDate: _date,
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100),
-        );
+      context: context,
+      initialDate: _date,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
     if (date != null && date != _date) {
       setState(() {
         _date = date;
@@ -33,7 +33,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
 
   _submit() {
     if (_formkey.currentState.validate()) {
-
+      _formkey.currentState.save();
+      print('$_title, $_date, $_priority');
     }
   }
 
@@ -41,9 +42,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-              child: SingleChildScrollView(
-                child: Container(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: SingleChildScrollView(
+          child: Container(
             padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,12 +113,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           iconEnabledColor: Theme.of(context).primaryColor,
                           items: _priorities.map((String priority) {
                             return DropdownMenuItem(
-                                value: priority,
-                                child: Text(
-                                  priority,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18.0,
+                              value: priority,
+                              child: Text(
+                                priority,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18.0,
                                 ),
                               ),
                             );
@@ -148,18 +149,17 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        child: FlatButton(
+                          child: Text(
+                            'Add',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
                           ),
-                          child: FlatButton(
-                            child: Text(
-                              'Add',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                              ),
-                            ),
-                            onPressed: _submit,
-                            
-                            ),
+                          onPressed: _submit,
+                        ),
                       ),
                     ],
                   ),
