@@ -2,6 +2,12 @@
 
 A new Flutter project.
 
+## A production ready native iOS and Android app that uses a SQLite database with Flutter.
+
+
+
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
