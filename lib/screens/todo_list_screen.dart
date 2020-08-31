@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tisktisktask/screens/add_task_screen.dart';
 
 class TodoListScreen extends StatefulWidget {
   @override
@@ -34,7 +35,12 @@ return Padding(
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         child: Icon(Icons.add),
-        onPressed: () => print('Navigate to add task screen'),
+        onPressed: () => Navigator.push(
+          context, 
+          MaterialPageRoute(
+            builder: (_) => AddTaskScreen(),
+            ),
+            ),
       ),
       body: ListView.builder(
         padding: EdgeInsets.symmetric(vertical: 80.0),
