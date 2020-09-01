@@ -1,6 +1,6 @@
-# tisktisktask
+# Beast of Burden
 
-A new Flutter project.
+A new Flutter productivity project.
 
 ## Android and iOS app that uses a SQLite database for local storage.
 
