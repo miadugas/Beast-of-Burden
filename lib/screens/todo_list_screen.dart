@@ -32,24 +32,23 @@ class _TodoListScreenState extends State<TodoListScreen> {
         children: <Widget>[
           ListTile(
             title: Text(
-              task.title, 
+              task.title,
               style: TextStyle(
-                fontSize: 18.0, 
+                fontSize: 18.0,
                 decoration: task.status == 0
                     ? TextDecoration.none
-                    : TextDecoration.lineThrough, 
-                    ),
+                    : TextDecoration.lineThrough,
+              ),
             ),
-            subtitle: 
-            Text(
+            subtitle: Text(
               '${_dateFormatter.format(task.date)} • ${task.priority}',
               style: TextStyle(
-                fontSize: 15.0, 
+                fontSize: 15.0,
                 decoration: task.status == 0
                     ? TextDecoration.none
-                    : TextDecoration.lineThrough, 
-                    ),
+                    : TextDecoration.lineThrough,
               ),
+            ),
             trailing: Checkbox(
               onChanged: (value) {
                 task.status = value ? 1 : 0;
@@ -116,13 +115,25 @@ class _TodoListScreenState extends State<TodoListScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        'My Tasks',
+                        'Tisk Tisk Task',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      // Text(
+                      //   'My Tasks',
+                      //   style: TextStyle(
+                      //     color: Colors.black,
+
+                      //     fontSize: 20.0,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 10.0,
                       ),

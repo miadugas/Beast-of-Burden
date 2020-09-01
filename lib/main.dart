@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tisktisktask/screens/todo_list_screen.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -15,7 +14,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.red,
-        
       ),
       home: TodoListScreen(),
     );

@@ -55,13 +55,17 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
       _dateController.text = _dateFormatter.format(date);
     }
   }
+    _delete() {
+    DatabaseHelper.instance.deleteTask(widget.task.id);
+    widget.updateTaskList();
+    Navigator.pop(context);
+  }
 
   _submit() {
     if (_formkey.currentState.validate()) {
       _formkey.currentState.save();
       print('$_title, $_date, $_priority');
 
-      // Insert the task to the user's database
       Task task = Task(title: _title, date: _date, priority: _priority);
       if (widget.task == null) {
         // Insert the task to our user's database
@@ -99,7 +103,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
                 SizedBox(height: 20.0),
                 Text(
-                  'AddTask',
+                  widget.task == null ? 'Add Task' : 'Update Task',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 40.0,
@@ -125,7 +129,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           validator: (input) => input.trim().isEmpty
                               ? 'Please enter a task title'
                               : null,
-                          onSaved: (input) => _title = input,
+                          onSaved: (input) =>
+                          _title = input,
                           initialValue: _title,
                         ),
                       ),
@@ -193,7 +198,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         ),
                         child: FlatButton(
                           child: Text(
-                            'Add',
+                            widget.task == null ? 'Add' : 'Update',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20.0,
@@ -202,6 +207,27 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           onPressed: _submit,
                         ),
                       ),
+                      widget.task != null
+                          ? Container(
+                              margin: EdgeInsets.symmetric(vertical: 20.0),
+                              height: 60.0,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: FlatButton(
+                                child: Text(
+                                  'Delete',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                  ),
+                                ),
+                                onPressed: _delete,
+                              ),
+                            )
+                          : SizedBox.shrink(),
                     ],
                   ),
                 ),
