@@ -8,7 +8,7 @@ A new Flutter project.
 
 
 
-Imported Packages:
+Imported Plugin's:
 
 INTL:
 Making date/number formatting more readable to standard formats.
