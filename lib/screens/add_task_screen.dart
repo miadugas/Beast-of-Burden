@@ -16,6 +16,18 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   final DateFormat _dateFormatter = DateFormat('MMM dd, yyyy');
   final List<String> _priorities = ['Low', 'Medium', 'High'];
 
+  @override
+  void initState() {
+    super.initState();
+    _dateController.text = _dateFormatter.format(_date);
+  }
+
+  @override
+  void dispose() {
+    _dateController.dispose();
+    super.dispose();
+  }
+
   _handleDatePicker() async {
     final DateTime date = await showDatePicker(
       context: context,
@@ -35,6 +47,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     if (_formkey.currentState.validate()) {
       _formkey.currentState.save();
       print('$_title, $_date, $_priority');
+
+      // Insert the task to the user's database
+
+      // Update the task
+
+      Navigator.pop(context);
     }
   }
 
@@ -108,6 +126,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 20.0),
                         child: DropdownButtonFormField(
+                          isDense: true,
                           icon: Icon(Icons.arrow_drop_down_circle),
                           iconSize: 22.0,
                           iconEnabledColor: Theme.of(context).primaryColor,
